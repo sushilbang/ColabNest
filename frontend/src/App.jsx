@@ -5,10 +5,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Use BrowserRouter as Router
 import Dashboard from "@/pages/Dashboard";
-import LoginPage from '@/components/LoginPage.jsx';
-import SignupPage from '@/components/SignupPage.jsx';
+import LoginPage from '@/pages/LoginPage.jsx';
+import SignupPage from '@/pages/SignupPage.jsx';
 import ProfileForm from '@/components/forms/ProfileForm.jsx';
-import LandingPage from '@/components/LandingPage.jsx';
+import LandingPage from '@/pages/LandingPage.jsx';
 
 
 const queryClient = new QueryClient();

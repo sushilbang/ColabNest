@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutDashboard, CheckSquare, User, HelpCircle, LogOut } from "lucide-react";
+import { Search, CheckSquare, User, HelpCircle, LogOut, Folder } from "lucide-react"; // Import Folder icon
 
 const Sidebar = () => {
   return (
@@ -8,7 +8,8 @@ const Sidebar = () => {
         <div className="h-10 w-10 rounded-full bg-neutral-100" />
       </div>
       <nav className="flex-1 space-y-1 p-4">
-        <NavItem icon={LayoutDashboard} label="My Projects" active />
+        <NavItem icon={Search} label="Explore" active />
+        <NavItem icon={Folder} label="My Projects" /> {/* New NavItem for My Projects */}
         <NavItem icon={CheckSquare} label="My Tasks" />
         <NavItem icon={User} label="Profile" />
         <NavItem icon={HelpCircle} label="Help" />
