@@ -6,14 +6,15 @@ export const signup=async(req,res)=>{
     try {
         const {email,username,password}=req.body;
 
-        if(!email || !!username || !password)
+        if(!email || !username || !password)
         {
             return res.status(400).json({success:false,message:"All fields are required"});
         }
 
         const username_exist=await User.findOne({username});
         if(username_exist)
-        {
+        {   
+            console.log("Username already exist");
             return res.status(400).json({success:false,message:"Username already exist"});
         }
 
@@ -47,7 +48,7 @@ export const signup=async(req,res)=>{
             secure: process.env.NODE_ENV === "production",
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             success: true,
             message: "User created successfully",
             user: {

@@ -1,6 +1,6 @@
 import express from 'express';
-import { protectRoute } from '../middleware/verify.auth';
-import { AssignTask, checkTask, getMyTask, submitTask, UpdateTask } from '../controller/task.controller';
+import { protectRoute } from '../middleware/verify.auth.js';
+import { AssignTask, checkTask, getMyTask, submitTask, UpdateTask } from '../controller/task.controller.js';
 
 const router=express.Router();  
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { authStore } from '@/stores/auth.store.js';
+import { useNavigate } from 'react-router-dom';
 
 // LoginPage.jsx
 const LoginPage = () => {
@@ -7,12 +8,17 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const { login, loading } = authStore();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await login({ username, password });
       console.log('Login successful:', res);
       // Handle successful login (e.g., redirect)
+      if(res) {
+        navigate('/dashboard');
+      }
     } catch (error) {
       console.error('Login failed:', error);
       // Handle login error (e.g., display error message)

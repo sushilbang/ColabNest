@@ -1,6 +1,6 @@
-import Project from "../model/project.model";
-import Task from "../model/task.model";
-import User from "../model/user.model";
+import Project from "../model/project.model.js";
+import Task from "../model/task.model.js";
+import User from "../model/user.model.js";
 
 
 export const AssignTask = async (req, res) => {

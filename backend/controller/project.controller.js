@@ -32,7 +32,7 @@ export const seeProjectDetail = async (req, res) => {
 
         if(!project){
             return res.status(404).json({msg: "Project not found"});
-        }   
+        }
 
         return res.status(200).json(project);
 

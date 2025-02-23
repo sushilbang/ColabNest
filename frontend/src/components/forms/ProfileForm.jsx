@@ -1,12 +1,16 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { Upload, X } from "lucide-react";
 import TagInput from "@/components/ui/TagInput.jsx";
 import { toast } from "sonner";
+import {userStore} from '@/stores/user.store.js';
+import { useNavigate } from "react-router-dom";
 
 const ProfileForm = () => {
   const [formData, setFormData] = useState({
     profilePicture: null,
+    fname:"",
+    lname:"",
     about: "",
     skills: [],
     experience: "",
@@ -16,6 +20,27 @@ const ProfileForm = () => {
   });
   const [previewURL, setPreviewURL] = useState(null);
   const [loading, setLoading] = useState(false);
+  const updateUserDetails = userStore((state) => state.updateUserDetails);
+  const user = userStore((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        fname: user.fname || "",
+        lname: user.lname || "",
+        about: user.about || "",
+        skills: user.skills || [],
+        experience: user.experience || "",
+        education: user.education || "",
+        linkedin: user.linkedin || "",
+        github: user.github || "",
+      });
+      if (user.profilePicture) {
+        setPreviewURL(user.profilePicture);
+      }
+    }
+  }, [user]);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -36,10 +61,28 @@ const ProfileForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      // Simulated API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      toast.success("Profile updated successfully!");
+      const formDataToSend = new FormData();
+
+      formDataToSend.append("fname", formData.fname);
+      formDataToSend.append("lname", formData.lname);
+      formDataToSend.append("about", formData.about);
+      formDataToSend.append("experience", formData.experience);
+      formDataToSend.append("education", formData.education);
+      formDataToSend.append("linkedin", formData.linkedin);
+      formDataToSend.append("github", formData.github);
+      formDataToSend.append("skills", JSON.stringify(formData.skills));
+
+      if (formData.profilePicture) {
+        formDataToSend.append("profilePicture", formData.profilePicture);
+      }
+
+      const res = await updateUserDetails(formDataToSend);
+      if(res) {
+        toast.success("Profile updated successfully!");
+        navigate("/dashboard");
+      }
     } catch (error) {
       toast.error("Failed to update profile. Please try again.");
     } finally {
@@ -110,9 +153,9 @@ const ProfileForm = () => {
                 </label>
                 <input
                   type="text"
-                  id="firstName"
-                  value={formData.firstName}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  id="fname"
+                  value={formData.fname}
+                  onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
                   className="w-full rounded-lg border border-neutral-200 px-4 py-3 text-sm input-transition input-ring"
                   required // Make first name required
                 />
@@ -123,9 +166,9 @@ const ProfileForm = () => {
                 </label>
                 <input
                   type="text"
-                  id="lastName"
-                  value={formData.lastName}
-                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  id="fname"
+                  value={formData.lname}
+                  onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
                   className="w-full rounded-lg border border-neutral-200 px-4 py-3 text-sm input-transition input-ring"
                   required // Make last name required
                 />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { authStore } from '@/stores/auth.store.js';
 import { useNavigate } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
@@ -13,13 +14,15 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await signup({ email, username, password }); // Include email in signup
-      console.log('Signup successful:', res);
-      // Handle successful signup (e.g., redirect)
-      // navigate('/dashboard');
+      const res = await signup({ email, username, password });
+      console.log('Signup response:', res);
+      if(res?.data?.success) {
+        // Toaster.success('Signup successful!');
+        console.log('Signup successful:', res);
+        navigate('/profileform');
+      }
     } catch (error) {
       console.error('Signup failed:', error);
-      // Handle signup error
     }
   };
 

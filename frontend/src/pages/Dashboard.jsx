@@ -3,11 +3,22 @@ import Sidebar from "../components/dashboard/Sidebar";
 import ProjectList from "../components/dashboard/ProjectList";
 import SearchBar from "../components/dashboard/Searchbar";
 import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { authStore } from "@/stores/authStore";
 
 const Dashboard = () => {
   const [searchType, setSearchType] = useState("projects");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
+
+  const user = authStore((state) => state.user); // Get user from authStore
+  const navigate = useNavigate(); // Initialize navigate
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="flex h-screen bg-neutral-50">

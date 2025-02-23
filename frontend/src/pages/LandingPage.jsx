@@ -5,27 +5,27 @@ const LandingPage = () => {
 return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
         {/* Navigation */}
-        <nav className="bg-white shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className="bg-white shadow-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex-shrink-0 flex items-center">
-                        <h1 className="text-2xl font-bold text-blue-600">ColabNest</h1>
+                    <a href="/" className="text-2xl font-bold text-blue-600 hover:cursor-pointer">ColabNest</a>
                     </div>
                     <div className="hidden md:block">
-                        <div className="ml-10 flex items-center space-x-4">
-                            <a href="#features" className="text-gray-600 hover:text-blue-600 px-3 py-2">Features</a>
-                            <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 px-3 py-2">How it Works</a>
-                            <a href="#about" className="text-gray-600 hover:text-blue-600 px-3 py-2">About</a>
-                            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                                Sign Up
-                            </button>
-                        </div>
+                    <div className="ml-10 flex items-center space-x-4">
+                        <a href="#features" className="text-gray-600 hover:text-blue-600 px-3 py-2">Features</a>
+                        <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 px-3 py-2">How it Works</a>
+                        <a href="#about" className="text-gray-600 hover:text-blue-600 px-3 py-2">About</a>
+                        <a href="/signup" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                            Sign Up
+                        </a>
+                    </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+                </div>
+            </nav>
 
-        {/* Hero Section */}
+            {/* Hero Section */}
         <div className="flex-grow flex items-center justify-center bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
@@ -41,10 +41,10 @@ return (
                             </p>
                             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center">
                                 <div className="rounded-md shadow">
-                                    <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                                    <a href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
                                         Get Started
                                         <ArrowRight className="ml-2 h-5 w-5" />
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -138,9 +138,9 @@ return (
                     <h2 className="text-3xl font-extrabold text-white">Ready to Start Collaborating?</h2>
                     <p className="mt-4 text-xl text-blue-100">Join ColabNest today and connect with fellow students!</p>
                     <div className="mt-8">
-                        <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-medium hover:bg-gray-100">
+                        <a href="/signup" className="bg-white text-blue-600 px-8 py-3 rounded-md font-medium hover:bg-gray-100">
                             Sign Up Now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

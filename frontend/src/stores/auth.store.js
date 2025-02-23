@@ -1,6 +1,6 @@
 import {create} from "zustand";
 import {toast} from "react-hot-toast";
-import axios from "axios";
+import axiosInstance from "@/lib/axios";
 
 
 export const authStore = create((set, get) => (
@@ -12,8 +12,9 @@ export const authStore = create((set, get) => (
             set({loading:true});
 
            try {
-             const res=await axios.post("/auth/signup",{email,username,password});
+             const res=await axiosInstance.post("/auth/signup",{email,username,password});
              set({user:res.data,loading:false});
+             return res;
            } catch (error) {
               set({loading:false});
               toast.error(error.response?.data?.message||"An error occured");   
@@ -23,7 +24,7 @@ export const authStore = create((set, get) => (
             set({loading:true});
 
             try {
-               const res=await axios.post("/auth/login",{username,password});
+               const res=await axiosInstance.post("/auth/login",{username,password});
                set({user:res.data,loading:false}); 
             } catch (error) {
                set({loading:false});    
@@ -32,7 +33,7 @@ export const authStore = create((set, get) => (
         },
         logout:async()=>{
             try {
-                await axios.post("/auth/logout");
+                await axiosInstance.post("/auth/logout");
                 set({user:null});
             } catch (error) {
                 toast.error(error.response?.data?.message || "An error occurred during logout");
